@@ -100,8 +100,10 @@ X_test_scaled = scaler.transform(X_test)
 ### 4. Model training
 #### KNN
 ```python
-knn1 = sklearn.neighbors.KNeighborsClassifier(n_neighbors=2,metric='minkowski',p=2,weights='distance',n_jobs=-1)
-knn2 = sklearn.neighbors.KNeighborsClassifier(n_neighbors=3,metric='minkowski',p=1,weights='distance',n_jobs=-1)
+knn1 = sklearn.neighbors.KNeighborsClassifier(n_neighbors=2,metric='minkowski',
+                                              p=2,weights='distance',n_jobs=-1)
+knn2 = sklearn.neighbors.KNeighborsClassifier(n_neighbors=3,metric='minkowski',
+                                              p=1,weights='distance',n_jobs=-1)
 ```
 
 #### SVM
