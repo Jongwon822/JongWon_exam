@@ -114,7 +114,8 @@ svm1 = sklearn.svm.SVC(C=50,gamma=0.01,kernel='rbf',
 
 #### RandomForest
 ```python
-rfc1 = sklearn.ensemble.RandomForestClassifier(n_estimators=200,max_depth=25,min_samples_split=8,n_jobs=-1)
+rfc1 = sklearn.ensemble.RandomForestClassifier(n_estimators=200,max_depth=25,
+                                               min_samples_split=8,n_jobs=-1)
 rfc2 = sklearn.ensemble.RandomForestClassifier(max_depth=25, max_features='sqrt', min_samples_leaf=1, 
                                                min_samples_split=5, n_estimators=200)
 ```
