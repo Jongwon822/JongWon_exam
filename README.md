@@ -83,7 +83,8 @@ y = np.array(y)
 
 ### 3. Data preprocessing
 ```python
-X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.3, random_state=0)
+X_train, X_test, y_train, y_test
+= sklearn.model_selection.train_test_split(X, y, test_size=0.3, random_state=0)
 
 scaler = sklearn.preprocessing.StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
