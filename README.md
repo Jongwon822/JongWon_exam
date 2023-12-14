@@ -14,13 +14,13 @@ This project uses Scikit-Learn to create a machine learning model to classify tu
 
 ## Training dataset
 ### 1. glioma_tumor
-
+![gg (1)](https://github.com/Jongwon822/Jongwon_Final/assets/147024868/c926ec7c-235c-48ff-9110-7f8ecf071ace)
 ### 2. meningioma_tumor
-
+![m (2)](https://github.com/Jongwon822/Jongwon_Final/assets/147024868/10af03d9-13d2-4223-aa0c-483e141720af)
 ### 3. no_tumor
-
+![1](https://github.com/Jongwon822/Jongwon_Final/assets/147024868/a7c7171d-a4ce-4615-85a9-bfe56824e0dc)
 ### 4. pituitary_tumor
-
+![p (1)](https://github.com/Jongwon822/Jongwon_Final/assets/147024868/886e39bc-6132-454b-a903-d89ff2ed4bb4)
 
 ## Model training and prediction
 
