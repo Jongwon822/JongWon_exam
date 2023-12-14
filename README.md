@@ -13,7 +13,13 @@ This project uses Scikit-Learn to create a machine learning model to classify tu
 - scikit-image : 0.21.0
 
 ## Training dataset
+### 1. glioma_tumor
 
+### 2. meningioma_tumor
+
+### 3. no_tumor
+
+### 4. pituitary_tumor
 
 
 ## Model training and prediction
