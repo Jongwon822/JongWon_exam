@@ -12,6 +12,10 @@ This project uses Scikit-Learn to create a machine learning model to classify tu
 - scikit-learn: 1.3.2
 - scikit-image : 0.21.0
 
+## Training dataset
+
+
+
 ## Model training and prediction
 
 ### 1. Load Packages
