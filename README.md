@@ -101,7 +101,8 @@ svm = SVC(C=1,gamma=1,kernel='rbf',random_state=1234)
 
 #### Extra Tree
 ```python
-etc = ExtraTreesClassifier(n_estimators = 200,max_features = 2,max_depth = 30,min_samples_split = 3,random_state = 1034,n_jobs = -1)
+etc = ExtraTreesClassifier(n_estimators = 200,max_features = 2,
+                           max_depth = 30,min_samples_split = 3,random_state = 1034,n_jobs = -1)
 ```
 
 #### Ridge
