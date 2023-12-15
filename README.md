@@ -135,7 +135,7 @@ print('Accuracy: %.2f' % sklearn.metrics.accuracy_score(y_test, y_pred))
 accuracy : 86% (My test)
 
 ## author
-name : LEE JONG WON
+name : Lee Jong Won
 
 e-mail : ljwon0415@naver.com
 
