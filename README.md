@@ -99,15 +99,15 @@ knn = KNeighborsClassifier(n_neighbors= 1,metric='minkowski',p=2,weights='distan
 svm = SVC(C=1,gamma=1,kernel='rbf',random_state=1234)
 ```
 
+#### Ridge
+```python
+rgc = RidgeClassifier(alpha = 0.5,class_weight='balanced')
+```
+
 #### Extra Tree
 ```python
 etc = ExtraTreesClassifier(n_estimators = 200,max_features = 2,
                            max_depth = 30,min_samples_split = 3,random_state = 1034,n_jobs = -1)
-```
-
-#### Ridge
-```python
-rgc = RidgeClassifier(alpha = 0.5,class_weight='balanced')
 ```
 
 #### Voting
