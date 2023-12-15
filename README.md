@@ -46,22 +46,16 @@ import numpy as np
 
 import matplotlib.pyplot as plt 
 %matplotlib inline
+
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import RidgeClassifier
+from sklearn.ensemble import VotingClassifier
+from sklearn.svm import SVC
 ```
 
 ### 2. Load Data Points
 ```python
-# Data augmentation function definition
-def augment_image(image):
-    # symmetry
-    if np.random.rand() < 0.5:
-        image = np.fliplr(image)
-    
-    # Random rotation (-45 to 45 degrees)
-    angle = np.random.uniform(-45, 45)
-    image = skimage.transform.rotate(image, angle, mode='reflect', preserve_range=True)
-    
-    return image
-
 image_size = 64
 labels = ['glioma_tumor','meningioma_tumor','no_tumor','pituitary_tumor']
 
@@ -75,30 +69,17 @@ for i in labels:
         img = skimage.color.rgb2gray(img)
         images.append(img)
         y.append(i)
-        
-        # Add augmented image
-        augmented_img = augment_image(img)
-        images.extend([img, augmented_img])
-        y.extend([i, i]) 
-        
-        
+
 images = np.array(images)
 
 X = images.reshape((-1, image_size**2))
 y = np.array(y)
 ```
 
-
-
-
-### 3. Data preprocessing
+### 3. Data Division
 ```python
 X_train, X_test, y_train, y_test
-= sklearn.model_selection.train_test_split(X, y, test_size=0.3, random_state=0)
-
-scaler = sklearn.preprocessing.StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
+= sklearn.model_selection.train_test_split(X, y, test_size=0.015, random_state=0)
 ```
 ##### Variable Explanation
 - 'X_train' is feature vectors of training dataset
@@ -108,54 +89,49 @@ X_test_scaled = scaler.transform(X_test)
 - 'y_pred' was initialized as zero vectors and fill 'y_pred' with predicted labels
 
 ### 4. Model training
-#### KNN
+#### KNeighbors
 ```python
-knn1 = sklearn.neighbors.KNeighborsClassifier(n_neighbors=2,metric='minkowski',
-                                              p=2,weights='distance',n_jobs=-1)
-knn2 = sklearn.neighbors.KNeighborsClassifier(n_neighbors=3,metric='minkowski',
-                                              p=1,weights='distance',n_jobs=-1)
+knn = KNeighborsClassifier(n_neighbors= 1,metric='minkowski',p=2,weights='distance',n_jobs=-1)
 ```
 
-#### SVM
+#### SVC
 ```python
-svm1 = sklearn.svm.SVC(C=50,gamma=0.01,kernel='rbf',
-                       random_state=100,probability=True)
+svm = SVC(C=1,gamma=1,kernel='rbf',random_state=1234)
 ```
 
-#### RandomForest
+#### Extra Tree
 ```python
-rfc1 = sklearn.ensemble.RandomForestClassifier(n_estimators=200,max_depth=25,
-                                               min_samples_split=8,n_jobs=-1)
-rfc2 = sklearn.ensemble.RandomForestClassifier(max_depth=25, max_features='sqrt', min_samples_leaf=1, 
-                                               min_samples_split=5, n_estimators=200)
+etc = ExtraTreesClassifier(n_estimators = 200,max_features = 2,max_depth = 30,min_samples_split = 3,random_state = 1034,n_jobs = -1)
+```
+
+#### Ridge
+```python
+rgc = RidgeClassifier(alpha = 0.5,class_weight='balanced')
 ```
 
 #### Voting
 ```python
-vote = sklearn.ensemble.VotingClassifier(estimators=[
-    ('knn1', knn1),
-    ('knn2', knn2),
-    ('svm1', svm1),
-    ('rfc1', rfc1),
-    ('rfc2', rfc2)
-], voting='soft',n_jobs=-1)
+vote = VotingClassifier(estimators = [
+    ('etc', etc),
+    ('knn', knn),
+    ('rgc', rgc),
+    ('svm', svm)
+], n_jobs=-1)
 ```
 
 #### Voting classifier training
 ```python
-vote.fit(X_train_scaled, y_train)
-y_pred = vote.predict(X_test_scaled)
+vote.fit(X_train, y_train)
+y_pred = vote.predict(X_test)
 ```
 
 ### 5. Accuracy
 ```python
-print('Accuracy: %f' % sklearn.metrics.accuracy_score(y_test, y_pred))
+print('Accuracy: %.2f' % sklearn.metrics.accuracy_score(y_test, y_pred))
 ```
 
 ## Accuracy Results
-accuracy : 79% (Professor's test)
-
-accuracy : 91% (My test)
+accuracy : 86% (My test)
 
 ## author
 name : LEE JONG WON
